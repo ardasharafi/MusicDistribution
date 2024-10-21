@@ -64,11 +64,15 @@
             <section>
                 <h2>Upload Cover & Track</h2>
                 <!-- آپلود با Uploadcare -->
-                <label for="cover-art">Upload Cover Image (JPG 3000x3000):</label>
-                <input type="file" role="uploadcare-uploader" id="cover-art" name="cover-art" data-crop="3000x3000" required>
+                <div style="margin-bottom: 20px;">
+                    <label for="cover-art">Upload Cover Image (JPG 3000x3000):</label>
+                    <input type="file" role="uploadcare-uploader" id="cover-art" name="cover-art" data-crop="3000x3000" required>
+                </div>
 
-                <label for="music-track">Upload WAV File:</label>
-                <input type="file" role="uploadcare-uploader" id="music-track" name="music-track" accept=".wav" required>
+                <div>
+                    <label for="music-track">Upload WAV File:</label>
+                    <input type="file" role="uploadcare-uploader" id="music-track" name="music-track" accept=".wav" required>
+                </div>
             </section>
 
             <button type="submit">Submit</button>

@@ -6,7 +6,7 @@
     <title>Music Distribution Service</title>
     <link rel="stylesheet" href="styles.css">
     <!-- لینک به کتابخانه Uploadcare -->
-    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
     
     <!-- تنظیم API Key -->
     <script>
@@ -74,6 +74,24 @@
                 <input type="url" id="apple-music" name="apple-music">
             </section>
 
+            <section>
+                <h2>Music Information</h2>
+                <label for="track-name">Track Name:</label>
+                <input type="text" id="track-name" name="track-name" required>
+
+                <label for="producer-name">Producer Name:</label>
+                <input type="text" id="producer-name" name="producer-name">
+
+                <label for="mixing-engineer">Mixing Engineer:</label>
+                <input type="text" id="mixing-engineer" name="mixing-engineer">
+
+                <label for="mastering-engineer">Mastering Engineer:</label>
+                <input type="text" id="mastering-engineer" name="mastering-engineer">
+
+                <label for="composer-name">Composer Name (Artist's Full Legal Name):</label>
+                <input type="text" id="composer-name" name="composer-name" required>
+            </section>
+
             <!-- بخش آپلود کاور -->
             <section class="upload-section">
                 <h2>Upload Cover Image</h2>
@@ -104,24 +122,20 @@
     </main>
 
     <script>
-        // تنظیمات آپلود درصدی برای کاور
-        uploadcare.Widget('[role=uploadcare-uploader]').onUploadComplete(function(info) {
-            var coverUploader = uploadcare.Widget('[role=uploadcare-uploader]#cover-art');
-            coverUploader.onProgress(function(progress) {
-                var percent = Math.round(progress.uploadProgress * 100);
-                document.getElementById('cover-progress-bar').style.width = percent + '%';
-                document.getElementById('cover-progress-text').textContent = percent + '%';
-            });
+        // برای کاور درصد آپلود را ردیابی کن
+        var coverUploader = uploadcare.Widget('[role=uploadcare-uploader]#cover-art');
+        coverUploader.onUploadProgress(function(info) {
+            var percent = Math.round(info.progress * 100);
+            document.getElementById('cover-progress-bar').style.width = percent + '%';
+            document.getElementById('cover-progress-text').textContent = percent + '%';
         });
 
-        // تنظیمات آپلود درصدی برای فایل WAV
-        uploadcare.Widget('[role=uploadcare-uploader]').onUploadComplete(function(info) {
-            var wavUploader = uploadcare.Widget('[role=uploadcare-uploader]#music-track');
-            wavUploader.onProgress(function(progress) {
-                var percent = Math.round(progress.uploadProgress * 100);
-                document.getElementById('wav-progress-bar').style.width = percent + '%';
-                document.getElementById('wav-progress-text').textContent = percent + '%';
-            });
+        // برای فایل WAV درصد آپلود را ردیابی کن
+        var wavUploader = uploadcare.Widget('[role=uploadcare-uploader]#music-track');
+        wavUploader.onUploadProgress(function(info) {
+            var percent = Math.round(info.progress * 100);
+            document.getElementById('wav-progress-bar').style.width = percent + '%';
+            document.getElementById('wav-progress-text').textContent = percent + '%';
         });
     </script>
 

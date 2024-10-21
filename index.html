@@ -10,12 +10,14 @@
 
     <header>
         <h1>Music Distribution Service</h1>
-        <p>Please fill in the required information</p>
+        <p>Please fill in the required information and upload your files</p>
     </header>
 
     <main>
         <!-- شروع فرم -->
-        <form action="https://formspree.io/f/xpwzwdjl" method="POST">
+        <form name="music-distribution" method="POST" action="/success" enctype="multipart/form-data" data-netlify="true">
+            <input type="hidden" name="form-name" value="music-distribution">
+            
             <section>
                 <h2>Artist Information</h2>
                 <label for="artist-name">Artist Name:</label>
@@ -53,18 +55,12 @@
             </section>
 
             <section>
-                <h2>Other Information</h2>
-                <label for="c-line">C Line:</label>
-                <input type="text" id="c-line" name="c-line">
-
-                <label for="p-line">P Line:</label>
-                <input type="text" id="p-line" name="p-line">
-            </section>
-
-            <section>
-                <h2>Upload Cover</h2>
-                <label for="cover-art">Upload Cover (Only JPG 3000x3000):</label>
+                <h2>Upload Cover & Track</h2>
+                <label for="cover-art">Upload Cover Image (JPG 3000x3000):</label>
                 <input type="file" id="cover-art" name="cover-art" accept=".jpg" required>
+
+                <label for="music-track">Upload WAV File:</label>
+                <input type="file" id="music-track" name="music-track" accept=".wav" required>
             </section>
 
             <button type="submit">Submit</button>

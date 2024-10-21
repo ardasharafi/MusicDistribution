@@ -14,33 +14,39 @@
     </script>
     
     <style>
-        /* استایل برای جدا کردن بخش‌ها و نمایش درصد آپلود */
+        /* استایل برای چپ چین کردن بخش‌ها */
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="date"], input[type="url"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
         .upload-section {
             margin-bottom: 40px;
-        }
-
-        .progress-bar-container {
-            margin-top: 10px;
-            height: 20px;
-            background-color: #333;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar {
-            background-color: #4caf50;
-            height: 100%;
-            width: 0;
-            transition: width 0.3s ease;
-        }
-
-        .progress-text {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -54,7 +60,7 @@
     <main>
         <!-- شروع فرم -->
         <form name="music-distribution" method="POST" action="https://formspree.io/f/xpwzwdjl" enctype="multipart/form-data">
-            <!-- مقصد به Formspree تغییر داده شده -->
+            <input type="hidden" name="form-name" value="music-distribution">
             
             <section>
                 <h2>Artist Information</h2>
@@ -79,6 +85,9 @@
                 <label for="track-name">Track Name:</label>
                 <input type="text" id="track-name" name="track-name" required>
 
+                <label for="composer-name">Composer Name (Artist's Full Legal Name):</label>
+                <input type="text" id="composer-name" name="composer-name" required>
+
                 <label for="producer-name">Producer Name:</label>
                 <input type="text" id="producer-name" name="producer-name">
 
@@ -87,9 +96,6 @@
 
                 <label for="mastering-engineer">Mastering Engineer:</label>
                 <input type="text" id="mastering-engineer" name="mastering-engineer">
-
-                <label for="composer-name">Composer Name (Artist's Full Legal Name):</label>
-                <input type="text" id="composer-name" name="composer-name" required>
             </section>
 
             <!-- بخش آپلود کاور -->
@@ -97,11 +103,6 @@
                 <h2>Upload Cover Image</h2>
                 <label for="cover-art">Upload Cover Image (JPG 3000x3000):</label>
                 <input type="hidden" role="uploadcare-uploader" id="cover-art" name="cover-art" data-crop="3000x3000" required>
-
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="cover-progress-bar"></div>
-                    <div class="progress-text" id="cover-progress-text">0%</div>
-                </div>
             </section>
 
             <!-- بخش آپلود فایل WAV -->
@@ -109,35 +110,12 @@
                 <h2>Upload WAV File</h2>
                 <label for="music-track">Upload WAV File:</label>
                 <input type="hidden" role="uploadcare-uploader" id="music-track" name="music-track" accept=".wav" required>
-
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="wav-progress-bar"></div>
-                    <div class="progress-text" id="wav-progress-text">0%</div>
-                </div>
             </section>
 
             <button type="submit">Submit</button>
         </form>
         <!-- پایان فرم -->
     </main>
-
-    <script>
-        // برای کاور درصد آپلود را ردیابی کن
-        var coverUploader = uploadcare.Widget('[role=uploadcare-uploader]#cover-art');
-        coverUploader.onUploadProgress(function(info) {
-            var percent = Math.round(info.progress * 100);
-            document.getElementById('cover-progress-bar').style.width = percent + '%';
-            document.getElementById('cover-progress-text').textContent = percent + '%';
-        });
-
-        // برای فایل WAV درصد آپلود را ردیابی کن
-        var wavUploader = uploadcare.Widget('[role=uploadcare-uploader]#music-track');
-        wavUploader.onUploadProgress(function(info) {
-            var percent = Math.round(info.progress * 100);
-            document.getElementById('wav-progress-bar').style.width = percent + '%';
-            document.getElementById('wav-progress-text').textContent = percent + '%';
-        });
-    </script>
 
 </body>
 </html>

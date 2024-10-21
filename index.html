@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Distribution Service</title>
     <link rel="stylesheet" href="styles.css">
-    
     <!-- لینک به کتابخانه Uploadcare -->
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
     
@@ -13,6 +12,43 @@
     <script>
         UPLOADCARE_PUBLIC_KEY = "a7b9d76091952310f787";  <!-- Public Key -->
     </script>
+    
+    <style>
+        /* استایل برای چپ چین کردن بخش‌ها */
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="date"], input[type="url"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .upload-section {
+            margin-bottom: 40px;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,7 +59,9 @@
 
     <main>
         <!-- شروع فرم -->
-        <form id="upload-form">
+        <form name="music-distribution" method="POST" action="https://formspree.io/f/xpwzwdjl" enctype="multipart/form-data">
+            <input type="hidden" name="form-name" value="music-distribution">
+            
             <section>
                 <h2>Artist Information</h2>
                 <label for="artist-name">Artist Name:</label>
@@ -61,43 +99,23 @@
             </section>
 
             <!-- بخش آپلود کاور -->
-            <section>
+            <section class="upload-section">
                 <h2>Upload Cover Image</h2>
-                <label for="cover-image">Upload Cover Image (JPG 3000x3000):</label>
-                <input type="hidden" role="uploadcare-uploader" id="cover-image" name="cover-image" data-crop="3000x3000" required>
+                <label for="cover-art">Upload Cover Image (JPG 3000x3000):</label>
+                <input type="hidden" role="uploadcare-uploader" id="cover-art" name="cover-art" data-crop="3000x3000" required>
             </section>
 
             <!-- بخش آپلود فایل WAV -->
-            <section>
+            <section class="upload-section">
                 <h2>Upload WAV File</h2>
-                <label for="wav-file">Upload WAV File:</label>
-                <input type="hidden" role="uploadcare-uploader" id="wav-file" name="wav-file" accept=".wav" required>
+                <label for="music-track">Upload WAV File:</label>
+                <input type="hidden" role="uploadcare-uploader" id="music-track" name="music-track" accept=".wav" required>
             </section>
 
             <button type="submit">Submit</button>
         </form>
         <!-- پایان فرم -->
     </main>
-
-    <script>
-        document.getElementById('upload-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // جلوگیری از ارسال فرم به صورت پیش‌فرض
-
-            var trackName = document.getElementById('track-name').value;
-
-            // آپلود کاور
-            var coverWidget = uploadcare.Widget('[role=uploadcare-uploader]#cover-image');
-            coverWidget.onUploadComplete(function(info) {
-                console.log('Cover uploaded with Track Name: ' + trackName);
-            });
-
-            // آپلود فایل WAV
-            var wavWidget = uploadcare.Widget('[role=uploadcare-uploader]#wav-file');
-            wavWidget.onUploadComplete(function(info) {
-                console.log('WAV uploaded with Track Name: ' + trackName);
-            });
-        });
-    </script>
 
 </body>
 </html>

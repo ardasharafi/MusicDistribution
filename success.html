@@ -4,59 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Submission Successful</title>
-    <style>
-        body {
-            background-color: #000; /* پس‌زمینه سیاه */
-            color: #fff; /* متن سفید */
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            text-align: center;
-            background-color: #222; /* پس‌زمینه خاکستری تیره */
-            padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* سایه‌ی شیک */
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 18px;
-        }
-
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #444;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .button:hover {
-            background-color: #666;
-        }
-    </style>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Thank You!</h1>
-        <p>Your form has been successfully submitted. We will review it soon.</p>
-        <a href="index.html" class="button">Go back to Home</a>
-    </div>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo"><span class="logo-mark">&#9835;</span> Music Distribution</a>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="submit.html" class="btn btn-small">Submit Release</a></li>
+            </ul>
+        </div>
+    </header>
 
+    <main class="message-page">
+        <div class="message-box">
+            <h1>Thank You!</h1>
+            <p>Your form has been successfully submitted. We will review it soon and get back to you by email.</p>
+            <a href="index.html" class="btn">Go back to Home</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Music Distribution Service</p>
+            <ul class="footer-links">
+                <li><a href="submit.html">Submit Release</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

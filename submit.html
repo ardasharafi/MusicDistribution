@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Release - Music Distribution Service</title>
+    <meta name="description" content="Submit your single, EP or album for distribution.">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- تنظیمات Uploadcare (باید قبل از لود کتابخانه تعریف شوند) -->
+    <script>
+        UPLOADCARE_PUBLIC_KEY = "a7b9d76091952310f787"; // Public Key
+        UPLOADCARE_LOCALE_TRANSLATIONS = {
+            errors: {
+                coverFormat: "Cover must be a JPG file",
+                coverSize: "Cover must be at least 3000x3000 px",
+                wavFormat: "File must be a WAV file"
+            },
+            dialog: { tabs: { preview: { error: {
+                coverFormat: { title: "Wrong format", text: "Please upload a JPG image.", back: "Try again" },
+                coverSize: { title: "Image too small", text: "The cover must be at least 3000x3000 pixels.", back: "Try again" },
+                wavFormat: { title: "Wrong format", text: "Please upload WAV audio files only.", back: "Try again" }
+            } } } }
+        };
+    </script>
+    <!-- لینک به کتابخانه Uploadcare -->
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo"><span class="logo-mark">&#9835;</span> Music Distribution</a>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="submit.html" class="btn btn-small" aria-current="page">Submit Release</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header container">
+            <h1>Submit Your Release</h1>
+            <p>Please fill in the required information and upload your files. Fields marked <span class="required">*</span> are required.</p>
+        </div>
+
+        <div class="container">
+            <div class="form-wrapper">
+                <!-- شروع فرم -->
+                <form id="release-form" method="POST" action="https://formspree.io/f/xpwzwdjl">
+                    <input type="hidden" name="_subject" value="New Music Distribution Submission">
+
+                    <!-- اطلاعات هنرمند -->
+                    <fieldset>
+                        <legend>Artist Information</legend>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="artist-name">Artist Name <span class="required">*</span></label>
+                                <input type="text" id="artist-name" name="artist-name" required>
+                            </div>
+                            <div class="field">
+                                <label for="legal-name">Legal Name <span class="required">*</span></label>
+                                <input type="text" id="legal-name" name="legal-name" required>
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="field">
+                                <label for="dob">Date of Birth <span class="required">*</span></label>
+                                <input type="date" id="dob" name="dob" required>
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="spotify">Spotify Artist Link</label>
+                                <input type="url" id="spotify" name="spotify" placeholder="https://open.spotify.com/artist/...">
+                                <span class="hint">Leave empty if this is your first release.</span>
+                            </div>
+                            <div class="field">
+                                <label for="apple-music">Apple Music Artist Link</label>
+                                <input type="url" id="apple-music" name="apple-music" placeholder="https://music.apple.com/...">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="instagram">Instagram</label>
+                            <input type="text" id="instagram" name="instagram" placeholder="@yourname">
+                        </div>
+                    </fieldset>
+
+                    <!-- اطلاعات انتشار -->
+                    <fieldset>
+                        <legend>Release Information</legend>
+                        <div class="field">
+                            <label>Release Type <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="release-type" value="Single" checked> Single</label>
+                                <label><input type="radio" name="release-type" value="EP"> EP</label>
+                                <label><input type="radio" name="release-type" value="Album"> Album</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="release-title">Release Title <span class="required">*</span></label>
+                            <input type="text" id="release-title" name="release-title" required>
+                            <span class="hint">For a single, this is usually the track name.</span>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="genre">Primary Genre <span class="required">*</span></label>
+                                <select id="genre" name="genre" required>
+                                    <option value="">Select a genre</option>
+                                    <option>Pop</option>
+                                    <option>Hip-Hop/Rap</option>
+                                    <option>R&amp;B/Soul</option>
+                                    <option>Electronic</option>
+                                    <option>Dance</option>
+                                    <option>Rock</option>
+                                    <option>Alternative</option>
+                                    <option>Indie</option>
+                                    <option>Metal</option>
+                                    <option>Jazz</option>
+                                    <option>Classical</option>
+                                    <option>Folk</option>
+                                    <option>Country</option>
+                                    <option>Latin</option>
+                                    <option>World</option>
+                                    <option>Soundtrack</option>
+                                    <option>Instrumental</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="language">Lyrics Language <span class="required">*</span></label>
+                                <input type="text" id="language" name="language" placeholder="e.g. English, Persian, Instrumental" required>
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="release-date">Release Date <span class="required">*</span></label>
+                                <input type="date" id="release-date" name="release-date" required>
+                                <span class="hint">We recommend choosing a date at least 3 weeks from today.</span>
+                            </div>
+                            <div class="field">
+                                <label for="label-name">Label Name</label>
+                                <input type="text" id="label-name" name="label-name" placeholder="Leave empty if independent">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Explicit Content <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="explicit" value="No" checked> No</label>
+                                <label><input type="radio" name="explicit" value="Yes"> Yes</label>
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="upc">UPC / EAN</label>
+                                <input type="text" id="upc" name="upc" inputmode="numeric" pattern="\d{12,13}" placeholder="Leave empty to get one assigned">
+                            </div>
+                            <div class="field">
+                                <label for="isrc">ISRC</label>
+                                <input type="text" id="isrc" name="isrc" placeholder="Leave empty to get one assigned">
+                                <span class="hint">For multiple tracks, list one ISRC per track, in order.</span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- اطلاعات موزیک و کردیت‌ها -->
+                    <fieldset>
+                        <legend>Tracks &amp; Credits</legend>
+                        <div class="field">
+                            <label for="track-names">Track Name(s) <span class="required">*</span></label>
+                            <textarea id="track-names" name="track-names" placeholder="One track per line, in release order" required></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="featured-artists">Featured Artists</label>
+                            <input type="text" id="featured-artists" name="featured-artists" placeholder="Separate names with commas">
+                        </div>
+                        <div class="field">
+                            <label for="composer-name">Composer Name (Artist's Full Legal Name) <span class="required">*</span></label>
+                            <input type="text" id="composer-name" name="composer-name" required>
+                        </div>
+                        <div class="field">
+                            <label for="lyricist-name">Lyricist Name</label>
+                            <input type="text" id="lyricist-name" name="lyricist-name">
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="producer-name">Producer Name</label>
+                                <input type="text" id="producer-name" name="producer-name">
+                            </div>
+                            <div class="field">
+                                <label for="mixing-engineer">Mixing Engineer</label>
+                                <input type="text" id="mixing-engineer" name="mixing-engineer">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="mastering-engineer">Mastering Engineer</label>
+                            <input type="text" id="mastering-engineer" name="mastering-engineer">
+                        </div>
+                        <div class="field">
+                            <label for="copyright">Copyright Owner <span class="required">*</span></label>
+                            <input type="text" id="copyright" name="copyright" placeholder="Name shown as &copy; / &#8471; owner" required>
+                        </div>
+                    </fieldset>
+
+                    <!-- آپلود فایل‌ها -->
+                    <fieldset>
+                        <legend>Files</legend>
+                        <div class="field">
+                            <label for="cover-art">Cover Image <span class="required">*</span></label>
+                            <input type="hidden" role="uploadcare-uploader" id="cover-art" name="cover-art"
+                                   data-images-only data-crop="3000x3000 minimum">
+                            <span class="hint">Square JPG, at least 3000 &times; 3000 px. No logos, URLs or social media handles on the artwork.</span>
+                        </div>
+                        <div class="field">
+                            <label for="music-tracks">WAV File(s) <span class="required">*</span></label>
+                            <input type="hidden" role="uploadcare-uploader" id="music-tracks" name="music-tracks"
+                                   data-multiple data-input-accept-types="audio/wav,audio/x-wav,.wav">
+                            <span class="hint">Upload one WAV file per track, named so the order is clear (e.g. 01 - Title.wav).</span>
+                        </div>
+                        <div class="field">
+                            <label for="notes">Notes</label>
+                            <textarea id="notes" name="notes" placeholder="Anything else we should know about this release?"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- تأیید -->
+                    <fieldset>
+                        <legend>Confirmation</legend>
+                        <div class="field checkbox">
+                            <input type="checkbox" id="rights" name="rights-confirmed" value="Yes" required>
+                            <label for="rights">I confirm that I own or control all rights to this music and artwork, and that it contains no uncleared samples. <span class="required">*</span></label>
+                        </div>
+                    </fieldset>
+
+                    <p class="form-status" role="alert"></p>
+                    <button type="submit" class="btn">Submit Release</button>
+                </form>
+                <!-- پایان فرم -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Music Distribution Service</p>
+            <ul class="footer-links">
+                <li><a href="submit.html">Submit Release</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/submit.js"></script>
+</body>
+</html>

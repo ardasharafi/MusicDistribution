@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Music Distribution Service</title>
+    <meta name="description" content="Get in touch with the Music Distribution team.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo"><span class="logo-mark">&#9835;</span> Music Distribution</a>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
+                <li><a href="submit.html" class="btn btn-small">Submit Release</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header container">
+            <h1>Contact Us</h1>
+            <p>Questions about a release? Send us a message and we'll reply by email.</p>
+        </div>
+
+        <div class="container">
+            <div class="form-wrapper">
+                <form id="contact-form" method="POST" action="https://formspree.io/f/xpwzwdjl">
+                    <input type="hidden" name="_subject" value="New Contact Message">
+
+                    <fieldset>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="contact-name">Name <span class="required">*</span></label>
+                                <input type="text" id="contact-name" name="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="contact-email">Email <span class="required">*</span></label>
+                                <input type="email" id="contact-email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="contact-release">Release Title</label>
+                            <input type="text" id="contact-release" name="release-title" placeholder="If your message is about a specific release">
+                        </div>
+                        <div class="field">
+                            <label for="contact-message">Message <span class="required">*</span></label>
+                            <textarea id="contact-message" name="message" required></textarea>
+                        </div>
+                    </fieldset>
+
+                    <p class="form-status" role="alert"></p>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Music Distribution Service</p>
+            <ul class="footer-links">
+                <li><a href="submit.html">Submit Release</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

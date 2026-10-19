@@ -5,50 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Distribution Service</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- تنظیمات Uploadcare (باید قبل از لود کتابخانه تعریف شوند) -->
+    <script>
+        UPLOADCARE_PUBLIC_KEY = "a7b9d76091952310f787"; // Public Key
+        UPLOADCARE_LOCALE_TRANSLATIONS = {
+            errors: {
+                coverFormat: "Cover must be a JPG file",
+                coverSize: "Cover must be at least 3000x3000 px",
+                wavFormat: "File must be a WAV file"
+            },
+            dialog: { tabs: { preview: { error: {
+                coverFormat: { title: "Wrong format", text: "Please upload a JPG image.", back: "Try again" },
+                coverSize: { title: "Image too small", text: "The cover must be at least 3000x3000 pixels.", back: "Try again" },
+                wavFormat: { title: "Wrong format", text: "Please upload a WAV audio file.", back: "Try again" }
+            } } } }
+        };
+    </script>
     <!-- لینک به کتابخانه Uploadcare -->
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
-    
-    <!-- تنظیم API Key -->
-    <script>
-        UPLOADCARE_PUBLIC_KEY = "a7b9d76091952310f787";  <!-- Public Key -->
-    </script>
-    
-    <style>
-        /* استایل برای چپ چین کردن بخش‌ها */
-        form {
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"], input[type="date"], input[type="url"], input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .upload-section {
-            margin-bottom: 40px;
-        }
-    </style>
 </head>
 <body>
 
@@ -59,9 +34,9 @@
 
     <main>
         <!-- شروع فرم -->
-        <form name="music-distribution" method="POST" action="https://formspree.io/f/xpwzwdjl" enctype="multipart/form-data">
-            <input type="hidden" name="form-name" value="music-distribution">
-            
+        <form id="music-distribution" name="music-distribution" method="POST" action="https://formspree.io/f/xpwzwdjl">
+            <input type="hidden" name="_subject" value="New Music Distribution Submission">
+
             <section>
                 <h2>Artist Information</h2>
                 <label for="artist-name">Artist Name:</label>
@@ -70,14 +45,17 @@
                 <label for="legal-name">Legal Name:</label>
                 <input type="text" id="legal-name" name="legal-name" required>
 
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
                 <label for="dob">Date of Birth (YYYY-MM-DD):</label>
                 <input type="date" id="dob" name="dob" required>
 
                 <label for="spotify">Spotify Link:</label>
-                <input type="url" id="spotify" name="spotify">
+                <input type="url" id="spotify" name="spotify" placeholder="https://open.spotify.com/artist/...">
 
                 <label for="apple-music">Apple Music Link:</label>
-                <input type="url" id="apple-music" name="apple-music">
+                <input type="url" id="apple-music" name="apple-music" placeholder="https://music.apple.com/...">
             </section>
 
             <section>
@@ -102,20 +80,84 @@
             <section class="upload-section">
                 <h2>Upload Cover Image</h2>
                 <label for="cover-art">Upload Cover Image (JPG 3000x3000):</label>
-                <input type="hidden" role="uploadcare-uploader" id="cover-art" name="cover-art" data-crop="3000x3000" required>
+                <input type="hidden" role="uploadcare-uploader" id="cover-art" name="cover-art"
+                       data-images-only data-crop="3000x3000 minimum">
             </section>
 
             <!-- بخش آپلود فایل WAV -->
             <section class="upload-section">
                 <h2>Upload WAV File</h2>
                 <label for="music-track">Upload WAV File:</label>
-                <input type="hidden" role="uploadcare-uploader" id="music-track" name="music-track" accept=".wav" required>
+                <input type="hidden" role="uploadcare-uploader" id="music-track" name="music-track"
+                       data-input-accept-types="audio/wav,audio/x-wav,.wav">
             </section>
 
-            <button type="submit">Submit</button>
+            <p id="form-status" class="form-status" role="alert"></p>
+            <button type="submit" id="submit-button">Submit</button>
         </form>
         <!-- پایان فرم -->
     </main>
+
+    <script>
+        var coverWidget = uploadcare.Widget("#cover-art");
+        var trackWidget = uploadcare.Widget("#music-track");
+
+        // بررسی فرمت و ابعاد کاور
+        coverWidget.validators.push(function (fileInfo) {
+            if (fileInfo.mimeType && fileInfo.mimeType !== "image/jpeg") {
+                throw new Error("coverFormat");
+            }
+            var info = fileInfo.originalImageInfo;
+            if (info && (info.width < 3000 || info.height < 3000)) {
+                throw new Error("coverSize");
+            }
+        });
+
+        // بررسی فرمت فایل WAV
+        trackWidget.validators.push(function (fileInfo) {
+            if (fileInfo.name && !/\.wav$/i.test(fileInfo.name)) {
+                throw new Error("wavFormat");
+            }
+        });
+
+        // ارسال فرم با AJAX و انتقال به صفحه موفقیت
+        var form = document.getElementById("music-distribution");
+        var statusEl = document.getElementById("form-status");
+        var submitButton = document.getElementById("submit-button");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            statusEl.textContent = "";
+
+            // input های hidden توسط مرورگر اعتبارسنجی نمی‌شوند، پس دستی چک می‌کنیم
+            if (!document.getElementById("cover-art").value) {
+                statusEl.textContent = "Please upload the cover image.";
+                return;
+            }
+            if (!document.getElementById("music-track").value) {
+                statusEl.textContent = "Please upload the WAV file.";
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                headers: { "Accept": "application/json" }
+            }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error("Request failed");
+                }
+                window.location.href = "success.html";
+            }).catch(function () {
+                statusEl.textContent = "Something went wrong. Please try again.";
+                submitButton.disabled = false;
+                submitButton.textContent = "Submit";
+            });
+        });
+    </script>
 
 </body>
 </html>

@@ -4,118 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Distribution Service</title>
+    <meta name="description" content="Release your music on the world's major streaming platforms and stores. Submit your track, cover art and credits in minutes.">
     <link rel="stylesheet" href="styles.css">
-    <!-- لینک به کتابخانه Uploadcare -->
-    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
-    
-    <!-- تنظیم API Key -->
-    <script>
-        UPLOADCARE_PUBLIC_KEY = "a7b9d76091952310f787";  <!-- Public Key -->
-    </script>
-    
-    <style>
-        /* استایل برای چپ چین کردن بخش‌ها */
-        form {
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"], input[type="date"], input[type="url"], input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .upload-section {
-            margin-bottom: 40px;
-        }
-    </style>
 </head>
 <body>
 
-    <header>
-        <h1>Music Distribution Service</h1>
-        <p>Please fill in the required information and upload your files</p>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo"><span class="logo-mark">&#9835;</span> Music Distribution</a>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="submit.html" class="btn btn-small">Submit Release</a></li>
+            </ul>
+        </div>
     </header>
 
     <main>
-        <!-- شروع فرم -->
-        <form name="music-distribution" method="POST" action="https://formspree.io/f/xpwzwdjl" enctype="multipart/form-data">
-            <input type="hidden" name="form-name" value="music-distribution">
-            
-            <section>
-                <h2>Artist Information</h2>
-                <label for="artist-name">Artist Name:</label>
-                <input type="text" id="artist-name" name="artist-name" required>
+        <!-- بخش اصلی -->
+        <section class="hero">
+            <div class="container">
+                <h1>Get your music heard everywhere</h1>
+                <p>Release your singles, EPs and albums on the world's biggest streaming platforms and stores. Send us your track, artwork and credits, and we handle the rest.</p>
+                <div class="hero-actions">
+                    <a href="submit.html" class="btn">Submit Your Release</a>
+                    <a href="#how-it-works" class="btn btn-outline">How It Works</a>
+                </div>
+            </div>
+        </section>
 
-                <label for="legal-name">Legal Name:</label>
-                <input type="text" id="legal-name" name="legal-name" required>
+        <!-- مراحل کار -->
+        <section class="section" id="how-it-works">
+            <div class="container">
+                <h2 class="section-title">How it works</h2>
+                <p class="section-lead">Three simple steps from your studio to your listeners.</p>
+                <div class="grid">
+                    <div class="card">
+                        <div class="step-number">1</div>
+                        <h3>Submit your release</h3>
+                        <p>Fill in the release form with your artist details, credits, cover art and WAV files.</p>
+                    </div>
+                    <div class="card">
+                        <div class="step-number">2</div>
+                        <h3>We review it</h3>
+                        <p>Our team checks your metadata, artwork and audio so your release meets every platform's requirements.</p>
+                    </div>
+                    <div class="card">
+                        <div class="step-number">3</div>
+                        <h3>Go live</h3>
+                        <p>Your music is delivered to the stores and goes live on your chosen release date.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <label for="dob">Date of Birth (YYYY-MM-DD):</label>
-                <input type="date" id="dob" name="dob" required>
+        <!-- پلتفرم‌ها -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Where your music goes</h2>
+                <p class="section-lead">We deliver to major streaming services and digital stores, including:</p>
+                <ul class="platforms">
+                    <li>Spotify</li>
+                    <li>Apple Music</li>
+                    <li>YouTube Music</li>
+                    <li>Amazon Music</li>
+                    <li>Deezer</li>
+                    <li>TIDAL</li>
+                    <li>TikTok</li>
+                    <li>Instagram &amp; Facebook</li>
+                    <li>SoundCloud</li>
+                    <li>Shazam</li>
+                </ul>
+            </div>
+        </section>
 
-                <label for="spotify">Spotify Link:</label>
-                <input type="url" id="spotify" name="spotify">
+        <!-- ویژگی‌ها -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why release with us</h2>
+                <p class="section-lead">Everything you need to put out music professionally.</p>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Singles, EPs &amp; albums</h3>
+                        <p>Release one track or a full project in a single submission.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Proper credits</h3>
+                        <p>Composers, producers, mixing and mastering engineers are all credited on your release.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Quality checks</h3>
+                        <p>Every release is reviewed by a person before delivery to reduce the chance of store rejections.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Real support</h3>
+                        <p>Questions about your release? Contact us and a real person will get back to you.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <label for="apple-music">Apple Music Link:</label>
-                <input type="url" id="apple-music" name="apple-music">
-            </section>
+        <!-- نیازمندی‌ها -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">What you'll need</h2>
+                <p class="section-lead">Have these ready before you start the form.</p>
+                <ul class="checklist">
+                    <li>Cover art: square JPG, at least 3000 &times; 3000 pixels</li>
+                    <li>Audio: WAV files (16-bit or 24-bit, 44.1 kHz or higher)</li>
+                    <li>Artist name and your full legal name</li>
+                    <li>Track titles and credits (composer, producer, engineers)</li>
+                    <li>Your Spotify and Apple Music artist links, if you already have them</li>
+                </ul>
+            </div>
+        </section>
 
-            <section>
-                <h2>Music Information</h2>
-                <label for="track-name">Track Name:</label>
-                <input type="text" id="track-name" name="track-name" required>
-
-                <label for="composer-name">Composer Name (Artist's Full Legal Name):</label>
-                <input type="text" id="composer-name" name="composer-name" required>
-
-                <label for="producer-name">Producer Name:</label>
-                <input type="text" id="producer-name" name="producer-name">
-
-                <label for="mixing-engineer">Mixing Engineer:</label>
-                <input type="text" id="mixing-engineer" name="mixing-engineer">
-
-                <label for="mastering-engineer">Mastering Engineer:</label>
-                <input type="text" id="mastering-engineer" name="mastering-engineer">
-            </section>
-
-            <!-- بخش آپلود کاور -->
-            <section class="upload-section">
-                <h2>Upload Cover Image</h2>
-                <label for="cover-art">Upload Cover Image (JPG 3000x3000):</label>
-                <input type="hidden" role="uploadcare-uploader" id="cover-art" name="cover-art" data-crop="3000x3000" required>
-            </section>
-
-            <!-- بخش آپلود فایل WAV -->
-            <section class="upload-section">
-                <h2>Upload WAV File</h2>
-                <label for="music-track">Upload WAV File:</label>
-                <input type="hidden" role="uploadcare-uploader" id="music-track" name="music-track" accept=".wav" required>
-            </section>
-
-            <button type="submit">Submit</button>
-        </form>
-        <!-- پایان فرم -->
+        <!-- دعوت به اقدام -->
+        <section class="section cta">
+            <div class="container">
+                <h2 class="section-title">Ready to release?</h2>
+                <p>It only takes a few minutes to submit your music.</p>
+                <a href="submit.html" class="btn">Submit Your Release</a>
+            </div>
+        </section>
     </main>
 
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Music Distribution Service</p>
+            <ul class="footer-links">
+                <li><a href="submit.html">Submit Release</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

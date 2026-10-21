@@ -7,6 +7,24 @@ if (navToggle && navLinks) {
         var open = navLinks.classList.toggle("open");
         navToggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
+
+    // بستن منو بعد از انتخاب لینک یا لمس بیرون منو
+    function closeMenu() {
+        navLinks.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+    }
+
+    navLinks.addEventListener("click", function (event) {
+        if (event.target.closest("a")) {
+            closeMenu();
+        }
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest(".site-header")) {
+            closeMenu();
+        }
+    });
 }
 
 // نمایش تدریجی بخش‌ها هنگام اسکرول

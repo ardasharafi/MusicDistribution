@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#07070b">
     <title>Submit Release - Music Distribution Service</title>
     <meta name="description" content="Submit your single, EP or album for distribution.">
     <link rel="icon" href="img/logo.svg" type="image/svg+xml">
@@ -66,37 +67,37 @@
                         <div class="field-row">
                             <div class="field">
                                 <label for="artist-name">Artist Name <span class="required">*</span></label>
-                                <input type="text" id="artist-name" name="artist-name" required>
+                                <input type="text" id="artist-name" autocomplete="nickname" autocapitalize="words" name="artist-name" required>
                             </div>
                             <div class="field">
                                 <label for="legal-name">Legal Name <span class="required">*</span></label>
-                                <input type="text" id="legal-name" name="legal-name" required>
+                                <input type="text" id="legal-name" autocomplete="name" autocapitalize="words" name="legal-name" required>
                             </div>
                         </div>
                         <div class="field-row">
                             <div class="field">
                                 <label for="email">Email <span class="required">*</span></label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email" autocomplete="email" inputmode="email" autocapitalize="off" name="email" required>
                             </div>
                             <div class="field">
                                 <label for="dob">Date of Birth <span class="required">*</span></label>
-                                <input type="date" id="dob" name="dob" required>
+                                <input type="date" id="dob" autocomplete="bday" name="dob" required>
                             </div>
                         </div>
                         <div class="field-row">
                             <div class="field">
                                 <label for="spotify">Spotify Artist Link</label>
-                                <input type="url" id="spotify" name="spotify" placeholder="https://open.spotify.com/artist/...">
+                                <input type="url" id="spotify" inputmode="url" autocapitalize="off" name="spotify" placeholder="https://open.spotify.com/artist/...">
                                 <span class="hint">Leave empty if this is your first release.</span>
                             </div>
                             <div class="field">
                                 <label for="apple-music">Apple Music Artist Link</label>
-                                <input type="url" id="apple-music" name="apple-music" placeholder="https://music.apple.com/...">
+                                <input type="url" id="apple-music" inputmode="url" autocapitalize="off" name="apple-music" placeholder="https://music.apple.com/...">
                             </div>
                         </div>
                         <div class="field">
                             <label for="instagram">Instagram</label>
-                            <input type="text" id="instagram" name="instagram" placeholder="@yourname">
+                            <input type="text" id="instagram" autocapitalize="off" autocorrect="off" name="instagram" placeholder="@yourname">
                         </div>
                     </fieldset>
 
@@ -113,7 +114,7 @@
                         </div>
                         <div class="field">
                             <label for="release-title">Release Title <span class="required">*</span></label>
-                            <input type="text" id="release-title" name="release-title" required>
+                            <input type="text" id="release-title" autocomplete="off" name="release-title" required>
                             <span class="hint">For a single, this is usually the track name.</span>
                         </div>
                         <div class="field-row">
@@ -143,7 +144,7 @@
                             </div>
                             <div class="field">
                                 <label for="language">Lyrics Language <span class="required">*</span></label>
-                                <input type="text" id="language" name="language" placeholder="e.g. English, Persian, Instrumental" required>
+                                <input type="text" id="language" autocapitalize="words" name="language" placeholder="e.g. English, Persian" required>
                             </div>
                         </div>
                         <div class="field-row">
@@ -154,7 +155,7 @@
                             </div>
                             <div class="field">
                                 <label for="label-name">Label Name</label>
-                                <input type="text" id="label-name" name="label-name" placeholder="Leave empty if independent">
+                                <input type="text" id="label-name" autocapitalize="words" name="label-name" placeholder="Leave empty if independent">
                             </div>
                         </div>
                         <div class="field">
@@ -167,12 +168,13 @@
                         <div class="field-row">
                             <div class="field">
                                 <label for="upc">UPC / EAN</label>
-                                <input type="text" id="upc" name="upc" inputmode="numeric" pattern="\d{12,13}" placeholder="Leave empty to get one assigned">
+                                <input type="text" id="upc" autocomplete="off" name="upc" inputmode="numeric" pattern="\d{12,13}" placeholder="Optional">
+                                <span class="hint">Leave empty to get one assigned.</span>
                             </div>
                             <div class="field">
                                 <label for="isrc">ISRC</label>
-                                <input type="text" id="isrc" name="isrc" placeholder="Leave empty to get one assigned">
-                                <span class="hint">For multiple tracks, list one ISRC per track, in order.</span>
+                                <input type="text" id="isrc" autocapitalize="characters" autocorrect="off" name="isrc" placeholder="Optional">
+                                <span class="hint">Leave empty to get one assigned. For multiple tracks, list one per track, in order.</span>
                             </div>
                         </div>
                     </fieldset>
@@ -186,33 +188,33 @@
                         </div>
                         <div class="field">
                             <label for="featured-artists">Featured Artists</label>
-                            <input type="text" id="featured-artists" name="featured-artists" placeholder="Separate names with commas">
+                            <input type="text" id="featured-artists" autocapitalize="words" name="featured-artists" placeholder="Separate names with commas">
                         </div>
                         <div class="field">
                             <label for="composer-name">Composer Name (Artist's Full Legal Name) <span class="required">*</span></label>
-                            <input type="text" id="composer-name" name="composer-name" required>
+                            <input type="text" id="composer-name" autocapitalize="words" name="composer-name" required>
                         </div>
                         <div class="field">
                             <label for="lyricist-name">Lyricist Name</label>
-                            <input type="text" id="lyricist-name" name="lyricist-name">
+                            <input type="text" id="lyricist-name" autocapitalize="words" name="lyricist-name">
                         </div>
                         <div class="field-row">
                             <div class="field">
                                 <label for="producer-name">Producer Name</label>
-                                <input type="text" id="producer-name" name="producer-name">
+                                <input type="text" id="producer-name" autocapitalize="words" name="producer-name">
                             </div>
                             <div class="field">
                                 <label for="mixing-engineer">Mixing Engineer</label>
-                                <input type="text" id="mixing-engineer" name="mixing-engineer">
+                                <input type="text" id="mixing-engineer" autocapitalize="words" name="mixing-engineer">
                             </div>
                         </div>
                         <div class="field">
                             <label for="mastering-engineer">Mastering Engineer</label>
-                            <input type="text" id="mastering-engineer" name="mastering-engineer">
+                            <input type="text" id="mastering-engineer" autocapitalize="words" name="mastering-engineer">
                         </div>
                         <div class="field">
                             <label for="copyright">Copyright Owner <span class="required">*</span></label>
-                            <input type="text" id="copyright" name="copyright" placeholder="Name shown as &copy; / &#8471; owner" required>
+                            <input type="text" id="copyright" autocapitalize="words" name="copyright" placeholder="Name shown as &copy; / &#8471; owner" required>
                         </div>
                     </fieldset>
 

@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Release - Music Distribution Service</title>
     <meta name="description" content="Submit your single, EP or album for distribution.">
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
     <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.add("js");</script>
 
     <!-- تنظیمات Uploadcare (باید قبل از لود کتابخانه تعریف شوند) -->
     <script>
@@ -28,9 +33,11 @@
 </head>
 <body>
 
+    <div class="bg-aurora" aria-hidden="true"><div class="bg-grid"></div><span></span><span></span><span></span></div>
+
     <header class="site-header">
         <div class="container">
-            <a href="index.html" class="logo"><span class="logo-mark">&#9835;</span> Music Distribution</a>
+            <a href="index.html" class="logo"><img src="img/logo.svg" alt=""> Music Distribution</a>
             <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -43,7 +50,7 @@
 
     <main>
         <div class="page-header container">
-            <h1>Submit Your Release</h1>
+            <h1>Submit Your <span class="gradient-text">Release</span></h1>
             <p>Please fill in the required information and upload your files. Fields marked <span class="required">*</span> are required.</p>
         </div>
 
@@ -55,7 +62,7 @@
 
                     <!-- اطلاعات هنرمند -->
                     <fieldset>
-                        <legend>Artist Information</legend>
+                        <legend><span class="num">1</span> Artist Information</legend>
                         <div class="field-row">
                             <div class="field">
                                 <label for="artist-name">Artist Name <span class="required">*</span></label>
@@ -95,13 +102,13 @@
 
                     <!-- اطلاعات انتشار -->
                     <fieldset>
-                        <legend>Release Information</legend>
+                        <legend><span class="num">2</span> Release Information</legend>
                         <div class="field">
                             <label>Release Type <span class="required">*</span></label>
                             <div class="radio-group">
-                                <label><input type="radio" name="release-type" value="Single" checked> Single</label>
-                                <label><input type="radio" name="release-type" value="EP"> EP</label>
-                                <label><input type="radio" name="release-type" value="Album"> Album</label>
+                                <label><input type="radio" name="release-type" value="Single" checked><span>Single</span></label>
+                                <label><input type="radio" name="release-type" value="EP"><span>EP</span></label>
+                                <label><input type="radio" name="release-type" value="Album"><span>Album</span></label>
                             </div>
                         </div>
                         <div class="field">
@@ -153,8 +160,8 @@
                         <div class="field">
                             <label>Explicit Content <span class="required">*</span></label>
                             <div class="radio-group">
-                                <label><input type="radio" name="explicit" value="No" checked> No</label>
-                                <label><input type="radio" name="explicit" value="Yes"> Yes</label>
+                                <label><input type="radio" name="explicit" value="No" checked><span>No</span></label>
+                                <label><input type="radio" name="explicit" value="Yes"><span>Yes</span></label>
                             </div>
                         </div>
                         <div class="field-row">
@@ -172,7 +179,7 @@
 
                     <!-- اطلاعات موزیک و کردیت‌ها -->
                     <fieldset>
-                        <legend>Tracks &amp; Credits</legend>
+                        <legend><span class="num">3</span> Tracks &amp; Credits</legend>
                         <div class="field">
                             <label for="track-names">Track Name(s) <span class="required">*</span></label>
                             <textarea id="track-names" name="track-names" placeholder="One track per line, in release order" required></textarea>
@@ -211,14 +218,14 @@
 
                     <!-- آپلود فایل‌ها -->
                     <fieldset>
-                        <legend>Files</legend>
-                        <div class="field">
+                        <legend><span class="num">4</span> Files</legend>
+                        <div class="field upload-box">
                             <label for="cover-art">Cover Image <span class="required">*</span></label>
                             <input type="hidden" role="uploadcare-uploader" id="cover-art" name="cover-art"
                                    data-images-only data-crop="3000x3000 minimum">
                             <span class="hint">Square JPG, at least 3000 &times; 3000 px. No logos, URLs or social media handles on the artwork.</span>
                         </div>
-                        <div class="field">
+                        <div class="field upload-box">
                             <label for="music-tracks">WAV File(s) <span class="required">*</span></label>
                             <input type="hidden" role="uploadcare-uploader" id="music-tracks" name="music-tracks"
                                    data-multiple data-input-accept-types="audio/wav,audio/x-wav,.wav">
@@ -232,7 +239,7 @@
 
                     <!-- تأیید -->
                     <fieldset>
-                        <legend>Confirmation</legend>
+                        <legend><span class="num">5</span> Confirmation</legend>
                         <div class="field checkbox">
                             <input type="checkbox" id="rights" name="rights-confirmed" value="Yes" required>
                             <label for="rights">I confirm that I own or control all rights to this music and artwork, and that it contains no uncleared samples. <span class="required">*</span></label>
@@ -249,12 +256,13 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; <span id="year"></span> Music Distribution Service</p>
+            <a href="index.html" class="logo"><img src="img/logo.svg" alt=""> Music Distribution</a>
             <ul class="footer-links">
                 <li><a href="submit.html">Submit Release</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <p>&copy; <span id="year"></span> Music Distribution Service</p>
         </div>
     </footer>
 

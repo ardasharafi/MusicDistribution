@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Music Distribution Service</title>
     <meta name="description" content="Get in touch with the Music Distribution team.">
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
     <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
+    <div class="bg-aurora" aria-hidden="true"><div class="bg-grid"></div><span></span><span></span><span></span></div>
+
     <header class="site-header">
         <div class="container">
-            <a href="index.html" class="logo"><span class="logo-mark">&#9835;</span> Music Distribution</a>
+            <a href="index.html" class="logo"><img src="img/logo.svg" alt=""> Music Distribution</a>
             <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -24,11 +31,29 @@
 
     <main>
         <div class="page-header container">
-            <h1>Contact Us</h1>
+            <h1>Get in <span class="gradient-text">touch</span></h1>
             <p>Questions about a release? Send us a message and we'll reply by email.</p>
         </div>
 
         <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="card">
+                        <div class="icon"><svg viewBox="0 0 24 24"><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></div>
+                        <h3>Email reply</h3>
+                        <p>We answer every message by email, so double-check your address.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
+                        <h3>Quick answers</h3>
+                        <p>Many questions are already answered in our <a href="faq.html">FAQ</a>.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+                        <h3>About a release?</h3>
+                        <p>Include the release title so we can find it faster.</p>
+                    </div>
+                </div>
             <div class="form-wrapper">
                 <form id="contact-form" method="POST" action="https://formspree.io/f/xpwzwdjl">
                     <input type="hidden" name="_subject" value="New Contact Message">
@@ -58,17 +83,19 @@
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
+            </div>
         </div>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; <span id="year"></span> Music Distribution Service</p>
+            <a href="index.html" class="logo"><img src="img/logo.svg" alt=""> Music Distribution</a>
             <ul class="footer-links">
                 <li><a href="submit.html">Submit Release</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <p>&copy; <span id="year"></span> Music Distribution Service</p>
         </div>
     </footer>
 

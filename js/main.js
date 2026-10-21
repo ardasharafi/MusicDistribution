@@ -9,6 +9,34 @@ if (navToggle && navLinks) {
     });
 }
 
+// نمایش تدریجی بخش‌ها هنگام اسکرول
+var revealEls = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { observer.observe(el); });
+} else {
+    revealEls.forEach(function (el) { el.classList.add("visible"); });
+}
+
+// نوار لوگوهای متحرک: لیست دوبار تکرار می‌شود تا حلقه بی‌وقفه باشد
+var marquee = document.querySelector(".marquee");
+if (marquee && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var track = marquee.querySelector(".logo-track");
+    Array.prototype.slice.call(track.children).forEach(function (item) {
+        var clone = item.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        track.appendChild(clone);
+    });
+    marquee.classList.add("animated");
+}
+
 // سال جاری در فوتر
 var yearEl = document.getElementById("year");
 if (yearEl) {
